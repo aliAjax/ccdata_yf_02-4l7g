@@ -1,0 +1,101 @@
+/* styles.css — 仅负责外观；规则见 rules.js，页面逻辑见 app.js */
+:root{
+  --ink:#17212b; --muted:#6d7b88; --line:#dbe2e8; --bg:#f5f8fa;
+  --blue:#276ef1; --yellow:#fff3bf;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px Inter,system-ui,sans-serif}
+.app{max-width:1450px;margin:auto;padding:20px}
+
+/* 顶栏 */
+.top{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.logo{font-size:20px;font-weight:800;display:flex;gap:10px;align-items:center}
+.dot{width:32px;height:32px;background:#276ef1;border-radius:9px;color:white;display:grid;place-items:center}
+.room{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--muted)}
+.room label{font-size:13px}
+.room input{width:130px;border:none;outline:none;font:inherit;font-weight:700;color:var(--ink);background:transparent}
+.room button{padding:4px 10px;font-size:12px}
+.top .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+button{border:1px solid var(--line);background:white;color:var(--ink);padding:8px 12px;border-radius:7px;cursor:pointer;font:inherit}
+button:hover{border-color:var(--blue);color:var(--blue)}
+button:disabled{opacity:.4;cursor:default;pointer-events:none}
+.primary{background:var(--blue);border-color:var(--blue);color:white;font-weight:700}
+
+/* 三栏布局 */
+.layout{display:grid;grid-template-columns:215px minmax(500px,1fr) 270px;gap:14px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px;align-self:start}
+.panel h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 13px}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.tool.active{background:#e9f0ff;color:var(--blue);border-color:#9ebaff}
+.divider{border-top:1px solid var(--line);margin:18px 0}
+.hint{color:var(--muted);line-height:1.8;margin:0;font-size:12.5px}
+.color{display:flex;gap:7px;flex-wrap:wrap}
+.color button{width:26px;height:26px;padding:0;border-radius:50%;border:2px solid white;box-shadow:0 0 0 1px var(--line)}
+.color button.active{box-shadow:0 0 0 2px var(--blue)}
+
+/* 画布 */
+.board-wrap{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.board-head{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.board-head small{color:var(--muted)}
+.local-badge{font-size:12px;color:#44a57b;font-weight:600}
+.sync{margin-left:auto;font-size:12px;color:#44a57b}
+.sync.warn{color:#e08a00}
+.board{height:650px;position:relative;overflow:hidden;background-color:#fbfcfd;
+  background-image:radial-gradient(#d7dee6 1px,transparent 1px);background-size:22px 22px;
+  cursor:crosshair;touch-action:none}
+.board.tool-line{cursor:copy}
+.board.tool-select{cursor:default}
+
+/* 元素 */
+.object{position:absolute;min-width:90px;min-height:40px;cursor:move;user-select:none}
+.object.selected{outline:2px solid var(--blue);outline-offset:2px}
+.object.pending{outline:2px dashed var(--blue);outline-offset:3px}
+.note{background:var(--yellow);padding:14px;border-radius:2px;box-shadow:0 4px 12px #24364a18;
+  white-space:pre-wrap;line-height:1.5;min-width:110px;max-width:300px}
+.note.blue{background:#dff3ff}
+.note.pink{background:#ffe0eb}
+.label{background:white;border:1px solid var(--line);padding:10px;border-radius:8px;
+  box-shadow:0 3px 10px #24364a14;white-space:pre-wrap;line-height:1.5}
+.shape{width:90px;height:58px;border:3px solid #276ef1;border-radius:12px;background:#e9f0ff}
+.circle{border-radius:50%;width:70px;height:70px}
+
+/* 连线层 */
+.edge-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.edge-hit{stroke:transparent;stroke-width:14;fill:none;pointer-events:stroke;cursor:pointer}
+.edge-line{stroke:#667484;stroke-width:2;fill:none;pointer-events:none;transition:stroke .1s}
+.edge-g.selected .edge-line{stroke:var(--blue);stroke-width:3}
+
+/* 内联编辑 */
+.editor{position:absolute;z-index:20;margin:0;padding:14px;border:none;outline:2px solid var(--blue);
+  font:inherit;line-height:1.5;border-radius:2px;resize:none;overflow:hidden;min-width:110px;
+  background:var(--yellow);white-space:pre-wrap}
+.editor.label-editor{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 3px 10px #24364a14}
+
+/* 右栏 */
+.avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;flex:none}
+.member{display:flex;align-items:center;gap:9px;padding:8px 0}
+.member small{color:var(--muted)}
+.filter{display:flex;flex-wrap:wrap;gap:6px}
+.filter button{font-size:12px;padding:5px 8px}
+.filter button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.event{font-size:12px;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--line);line-height:1.6}
+.event:last-child{border-bottom:none}
+.event b{color:var(--ink)}
+.event.muted{color:var(--muted)}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);
+  color:#fff;padding:10px 14px;border-radius:8px;display:none;z-index:50;max-width:80vw}
+.toast.show{display:block}
+.toast.err{background:#c0392b}
+
+@media(max-width:1000px){
+  .layout{grid-template-columns:190px 1fr}
+  .right{grid-column:1/-1}
+}
+@media(max-width:700px){
+  .app{padding:10px}
+  .layout{grid-template-columns:1fr}
+  .board{height:520px}
+  .top .actions{margin-left:0}
+  .room input{width:100px}
+}

@@ -6,6 +6,6 @@
   "projectForm": "完整项目",
   "codeScope": "frontend",
   "languages": ["HTML", "CSS", "JavaScript"],
-  "summary": "Canvas Room collaborative whiteboard demo with notes, text, shapes, lines, member cursors, undo and PNG export.",
+  "summary": "Canvas Room offline whiteboard: per-room data isolation, room-scoped undo/redo, localStorage persistence across refresh, endpoint-bound edges that follow and clean up with their elements, and validated room export/import that never overwrites the board with corrupt data. Style, rules and page logic are split into separate files, directly openable.",
   "containerized": false
 }
